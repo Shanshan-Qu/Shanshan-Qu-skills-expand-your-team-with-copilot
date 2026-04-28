@@ -604,7 +604,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Build share text and URL
     const shareText = `Check out "${name}" at Mergington High School! ${details.description} Schedule: ${formattedSchedule}.`;
-    const shareUrl = window.location.href;
+    const pageUrl = new URL(window.location.href);
+    pageUrl.searchParams.set("activity", name);
+    const shareUrl = pageUrl.toString();
 
     // Set up share links
     sharePopup.querySelector(".whatsapp-share").href =
@@ -917,5 +919,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize app
   checkAuthentication();
   initializeFilters();
-  fetchActivities();
+  fetchActivities().then(() => {
+    // If opened from a shared link, scroll to and highlight the specified activity
+    const sharedActivityName = new URLSearchParams(window.location.search).get("activity");
+    if (sharedActivityName) {
+      const cards = activitiesList.querySelectorAll(".activity-card");
+      for (const card of cards) {
+        const title = card.querySelector("h4");
+        if (title && title.textContent.trim() === sharedActivityName) {
+          card.classList.add("highlighted-activity");
+          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          break;
+        }
+      }
+    }
+  });
 });

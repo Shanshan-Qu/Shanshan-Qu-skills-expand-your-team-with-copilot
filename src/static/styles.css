@@ -469,6 +469,12 @@ button {
   font-size: 0.85rem;
 }
 
+/* Highlight an activity card opened from a shared link */
+.highlighted-activity {
+  outline: 3px solid var(--secondary);
+  box-shadow: 0 0 0 4px rgba(255, 111, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
 /* Share button and popup */
 .share-container {
   position: relative;
