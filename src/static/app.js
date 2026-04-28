@@ -861,6 +861,27 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeRangeFilter,
   };
 
+  // Dark mode toggle
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+  if (darkModeToggle) {
+    function applyTheme(isDark) {
+      document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+      darkModeToggle.textContent = isDark ? "☀️" : "🌙";
+      darkModeToggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+      darkModeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    applyTheme(savedTheme === "dark");
+
+    darkModeToggle.addEventListener("click", () => {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+      applyTheme(!isDark);
+    });
+  }
+
   // Initialize app
   checkAuthentication();
   initializeFilters();
