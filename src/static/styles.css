@@ -187,7 +187,8 @@ section h3 {
   margin-top: auto;
   padding-top: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 /* Activity Tag */
@@ -468,6 +469,66 @@ button {
   font-size: 0.85rem;
 }
 
+/* Share button and popup */
+.share-container {
+  position: relative;
+  display: inline-block;
+}
+
+.share-button {
+  background-color: var(--background);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.share-button:hover {
+  background-color: var(--primary-light);
+  color: white;
+  border-color: var(--primary-light);
+}
+
+.share-popup {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 100;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.share-option {
+  display: block;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.share-option:hover {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
@@ -475,8 +536,6 @@ footer {
   color: var(--text-secondary);
   font-size: 0.8rem;
 }
-
-/* Search and Filter Components - Updated for Sidebar */
 .search-box {
   display: flex;
   width: 100%;
